@@ -139,18 +139,25 @@ export const exampleDetails = `<!-- System - START -->
 <p data-ke-size="size16"><i>italic</i></p>
 <p data-ke-size="size16"><u>밑줄</u></p>
 <p><del>취소선</del></p>
-<pre class=""><code data-highlighted="yes" class="hljs language-undefined">코드</code></pre>
+<pre class=""><code data-highlighted="yes" class="hljs language-undefined"><span class="hljs-meta">@ExampleAnnotationCode</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TheExampleClass</span> {
+<span class="hljs-meta">    @ExampleAnnotation</span> <span class="hljs-comment">// 예제코드의 주석입니다. 매우 긴 주석으로 되어 있습니다. 스타일을 미리 체크해보세요. 여기는 주석으로 되어 있는 예제 글입니다. 이 코드 블럭의 스타일이 깨지지 않게 조정하세요.</span>
+<span class="hljs-keyword">    private</span> <span class="hljs-type">int</span> quantity;
+<span class="hljs-keyword">    public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">VeryLongNameMethodVeryLongNameMethodVeryLongNameMethod</span><span class="hljs-params">(int args1, int args2, int args3, int args4)</span> {
+<span>        ...</span>
+<span>    }</span>
+}</code></pre>
 <p data-ke-size="size16">인라인에 들어가는 <code>코드</code>입니다.</p>
 <p style="text-align: center;" data-ke-size="size16">가운데 정렬</p>
 <p style="text-align: right;" data-ke-size="size16">오른쪽 정렬</p>
 <blockquote data-ke-style="style1">
-<p data-ke-size="size16">인용문구1</p>
+<p data-ke-size="size16">인용문구1 - 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구</p>
 </blockquote>
 <blockquote data-ke-style="style2">
-<p data-ke-size="size16">인용문구2</p>
+<p data-ke-size="size16">인용문구2 - 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구</p>
 </blockquote>
 <blockquote data-ke-style="style3">
-<p data-ke-size="size16">인용문구3</p>
+<p data-ke-size="size16">인용문구3 - 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구 인용문구</p>
 </blockquote>
 <p data-ke-size="size16">인용문구 아래에 있는 글입니다.</p>
 <table data-ke-align="alignLeft">
