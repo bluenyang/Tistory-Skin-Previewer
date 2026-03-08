@@ -1,0 +1,17 @@
+---
+const {
+  class: bodyClass="",
+} = Astro.props;
+
+const isPreview = import.meta.env.DEV;
+const isProd = import.meta.env.PROD;
+---
+
+<body id="[##_body_id_##]" class={bodyClass}>
+  <s_t3>
+    <slot />
+  </s_t3>
+  
+  {isProd && <script src="./images/common.js" is:inline />}
+  {isPreview && <script src="/src/scripts/common.ts" />}
+</body>

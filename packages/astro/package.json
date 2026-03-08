@@ -16,7 +16,9 @@
       "types": "./dist/middleware.d.ts",
       "import": "./dist/middleware.mjs",
       "require": "./dist/middleware.js"
-    }
+    },
+    "./components/TistorySkinHead": "./src/components/TistorySkinHead.astro",
+    "./components/TistorySkinBody": "./src/components/TistorySkinBody.astro"
   },
   "files": [
     "dist"

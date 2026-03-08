@@ -1,0 +1,20 @@
+---
+const {
+  title = "[##_title_##]",
+} = Astro.props;
+
+const isPreview = import.meta.env.DEV;
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <slot />
+  {isPreview && (
+    <Fragment>
+      <link rel="stylesheet" href="https://t1.daumcdn.net/tistory_admin/www/style/font.css" />
+      <link rel="stylesheet" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog.../static/style/content.css" />
+    </Fragment>
+  )}
+</head>
