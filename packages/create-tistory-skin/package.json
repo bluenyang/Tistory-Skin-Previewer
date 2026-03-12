@@ -1,5 +1,5 @@
 {
-  "name": "@bluenyang/create-tistory-skin",
+  "name": "create-tistory-skin",
   "version": "1.0.0",
   "description": "Tistory Skin Previewer 템플릿 생성기",
   "author": {
@@ -14,6 +14,6 @@
   },
   "dependencies": {
     "prompts": "^2.4.2",
-    "picocolors": "^1.0.0"
+    "picocolors": "^1.1.1"
   }
 }
