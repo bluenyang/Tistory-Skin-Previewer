@@ -11,8 +11,7 @@ const __dirname = path.dirname(__filename);
 async function init() {
   console.log(pc.cyan("🚀 Tistory Skin 프로젝트를 생성합니다.\n"));
 
-  // 프로젝트 이름 입력받기
-  const response = await prompts(
+  const response = await prompts([
     {
       type: "text",
       name: "projectName",
@@ -25,7 +24,7 @@ async function init() {
       message: "Tailwind CSS를 사용하시겠습니까?",
       initial: true,
     },
-  );
+  ]);
 
   if (!response.projectName) {
     console.log(pc.red("프로젝트 생성이 취소되었습니다."));
@@ -34,7 +33,7 @@ async function init() {
 
   const targetDir = path.join(process.cwd(), response.projectName);
 
-  // 디렉토리 생성
+  // 대상 디렉토리 최초 생성
   if (!fs.existsSync(targetDir)) {
     fs.mkdirSync(targetDir, { recursive: true });
   } else {
@@ -42,7 +41,6 @@ async function init() {
     process.exit(1);
   }
 
-  // 템플릿 복사
   const templateDir = path.join(__dirname, "template");
 
   function copyRecursiveSync(src, dest) {
@@ -51,7 +49,11 @@ async function init() {
     const isDirectory = exists && stats.isDirectory();
 
     if (isDirectory) {
-      fs.mkdirSync(dest);
+      // fixed: 폴더가 없을 때만 생성하거나 recursive: true를 줘서 EEXIST 에러 방지
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+
       fs.readdirSync(src).forEach((childItemName) => {
         // npm 발매 시 .gitignore가 누락되는 이슈 방지용 트릭 (gitignore -> .gitignore로 복사)
         const destName = childItemName === "gitignore" ? ".gitignore" : childItemName;
@@ -62,7 +64,7 @@ async function init() {
     }
   }
 
-  console.log(pc.blue("템플릿 파일들을 복사하는 중..."));
+  console.log(pc.blue("\n템플릿 파일들을 복사하는 중..."));
   copyRecursiveSync(templateDir, targetDir);
 
   // Tailwind CSS 사용하지 않는 경우
