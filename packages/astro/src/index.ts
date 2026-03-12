@@ -32,15 +32,6 @@ export default function tistoryPreviewer(): AstroIntegration {
             pattern: "/[...slug]",
             entrypoint: skinEntry,
           });
-        } else if (command === "build") {
-          // 빌드 시 "export const prerender = false;"가 있으면, 해당 라인을 제거
-          if (existsSync(skinEntry)) {
-            const skinContent = readFileSync(skinEntry, "utf-8");
-            const modifiedContent = skinContent.replace("export const prerender = false;\n", "");
-            writeFileSync(skinEntry, modifiedContent, "utf-8");
-          } else {
-            console.error("⚠️ index.astro 파일이 존재하지 않습니다.");
-          }
         }
 
         // Vite 설정 업데이트
