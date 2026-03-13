@@ -12,6 +12,9 @@
     "astro": "^5.18.0"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-typescript": "^12.1.4",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "@tistory-skin-previewer/astro": "^1.0.1",
@@ -23,6 +26,7 @@
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
+    "rollup": "^4.44.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.36.0"
