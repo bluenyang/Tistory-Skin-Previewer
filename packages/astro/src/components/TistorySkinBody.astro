@@ -2,6 +2,8 @@
 const {
   class: bodyClass="",
 } = Astro.props;
+
+const isPreview = import.meta.env.DEV;
 ---
 
 <body id="[##_body_id_##]" class={bodyClass}>
@@ -9,5 +11,8 @@ const {
     <slot />
   </s_t3>
   
-  <script src="/src/scripts/common.ts"></script>
+  {isPreview ? 
+    <script src="/src/scripts/common.ts"></script> : 
+    <script is:inline src="./images/common.js"></script>
+  }
 </body>

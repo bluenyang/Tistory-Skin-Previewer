@@ -1,6 +1,7 @@
 ---
 const {
   title = "[##_title_##]",
+  description = "Tistory Skin Previewer - Powered by @bluenyang/create-tistory-skin",
 } = Astro.props;
 
 const isPreview = import.meta.env.DEV;
@@ -9,12 +10,44 @@ const isPreview = import.meta.env.DEV;
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="description" content={description} />
   <title>{title}</title>
   <slot />
   {isPreview && (
     <Fragment>
-      <link rel="stylesheet" href="https://t1.daumcdn.net/tistory_admin/www/style/font.css" />
-      <link rel="stylesheet" href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog.../static/style/content.css" />
+      <link
+        rel="stylesheet"
+        href="https://t1.daumcdn.net/tistory_admin/www/style/font.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/content.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/pc/dist/index.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/uselessPMargin.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/revenue.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/dialog.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/postBtn.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://tistory1.daumcdn.net/tistory_admin/userblog/userblog-c836ce1e46737931c43cb093fb76ff6db3c2ace9/static/style/tistory.css"
+      />
     </Fragment>
   )}
 </head>

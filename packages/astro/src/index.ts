@@ -21,6 +21,34 @@ export default function tistoryPreviewer(): AstroIntegration {
 
         // 개발 서버에서만 미들웨어와 가상 라우트 추가
         if (command === "dev") {
+          if (existsSync(skinEntry)) {
+            const skinContent = readFileSync(skinEntry, "utf-8");
+
+            if (!skinContent.includes("export const prerender = false")) {
+              const lines = skinContent.split("\n");
+              const frontmatterEndIndex = lines.findIndex((line, idx) => {
+                return idx > 0 && line.trim() === "---";
+              });
+
+              if (frontmatterEndIndex > 0) {
+                lines.shift();
+                lines.unshift("export const prerender = false;");
+                lines.unshift("---");
+              } else {
+                lines.unshift("---");
+                lines.push("export const prerender = false;");
+                lines.push("---");
+              }
+
+              const modifiedContent = lines.join("\n");
+              writeFileSync(skinEntry, modifiedContent, "utf-8");
+
+              console.error(
+                "⚠️ skin.astro 파일에 'export const prerender = false;'를 추가했습니다.",
+              );
+            }
+          }
+
           addMiddleware({
             entrypoint: "@tistory-skin-previewer/astro/middleware",
             order: "pre",
@@ -32,31 +60,20 @@ export default function tistoryPreviewer(): AstroIntegration {
             pattern: "/[...slug]",
             entrypoint: skinEntry,
           });
+        } else if (command === "build") {
+          // 빌드 시 "export const prerender = false;"가 있으면, 해당 라인을 제거
+          if (existsSync(skinEntry)) {
+            const skinContent = readFileSync(skinEntry, "utf-8");
+            const modifiedContent = skinContent.replace("export const prerender = false;\n", "");
+            writeFileSync(skinEntry, modifiedContent, "utf-8");
+          } else {
+            console.error("⚠️ index.astro 파일이 존재하지 않습니다.");
+          }
         }
 
         // Vite 설정 업데이트
         updateConfig({
           vite: {
-            plugins: [
-              {
-                // 메모리 상에서 prerender = false 주입
-                name: "vite-plugin-tistory-prerender",
-                enforce: "pre",
-                transform(code, id) {
-                  // 사용자의 index.astro 파일이 로드될 때만 개입
-                  if (id.endsWith("src/pages/index.astro") && !code.includes("prerender = false")) {
-                    if (code.startsWith("---")) {
-                      // 기존 Frontmatter가 있으면 그 안에 주입
-                      return code.replace(/^---\r?\n/, "---\nexport const prerender = false;\n");
-                    } else {
-                      // Frontmatter가 아예 없으면 새로 만들어서 감싸기
-                      return `---\nexport const prerender = false;\n---\n${code}`;
-                    }
-                  }
-                  return code;
-                },
-              },
-            ],
             build: {
               rollupOptions: {
                 output: {
